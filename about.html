@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - Mandarin Mate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #DC2626;
+            --primary-hover: #B91C1C;
+            --primary-light: #FEE2E2;
+            --bg-gray: #F9FAFB;
+            --border: #E5E7EB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-gray);
+            color: var(--text-primary);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* 顶部导航 - 与首页完全一致 */
+        .top-nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0; right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 主内容区 */
+        .main-container {
+            margin-top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+
+        /* Hero区域 */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #991B1B 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 内容区域 */
+        .content-section {
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        /* 特色卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 团队区域 */
+        .team-section {
+            background: var(--white);
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin: 0 auto 12px;
+            border: 4px solid var(--primary-light);
+        }
+
+        .member-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .member-role {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 联系区域 */
+        .contact-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .contact-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-btn.primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .contact-btn.secondary {
+            background: var(--white);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .contact-btn.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 3px;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">友</div>
+                <span>Mandarin Mate</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="immersive.html">沉浸对话</a></li>
+                <li><a href="explore.html">图文探索</a></li>
+                <li><a href="about.html" class="active">关于我们</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="online-dot"></div>
+            <span>在线用户: 1,287</span>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="main-container">
+        <!-- Hero区域 -->
+        <section class="hero-section">
+            <div class="hero-icon">友</div>
+            <h1>关于 Mandarin Mate</h1>
+            <p>致力于打造最智能、最人性化的中文学习平台，让每个人都能轻松掌握中文，感受中华文化的魅力。</p>
+        </section>
+
+        <!-- 介绍区域 -->
+        <section class="content-section">
+            <h2 class="section-title">我们的使命</h2>
+            <p class="about-text">
+                Mandarin Mate 诞生于对中文教育的热爱。我们相信，学习一门语言不仅是掌握交流工具，
+                更是打开一扇了解文化的窗口。通过 AI 技术和沉浸式学习体验，我们希望让中文学习变得
+                更高效、更有趣、更贴近真实生活场景。
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI 智能语伴</h3>
+                    <p>四位不同风格的 AI 语伴，满足从日常对话到商务场景的各种学习需求</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>个性化学习</h3>
+                    <p>根据 HSK 水平定制学习内容，智能调整难度，让学习更有针对性</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>文化沉浸</h3>
+                    <p>不仅学语言，更了解中国文化、历史、习俗，全面提升文化素养</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>实时反馈</h3>
+                    <p>即时语法纠正、发音指导、用词建议，让进步看得见</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 团队区域 -->
+        <section class="team-section">
+            <h2 class="section-title">认识我们的语伴</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar" style="background: linear-gradient(135deg, #FCD34D, #F59E0B);">👨‍🏫</div>
+                    <div class="member-name">李晓</div>
+                    <div class="member-role">标准普通话导师</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar" style="background: linear-gradient(135deg, #60A5FA, #3B82F6);">🧢</div>
+                    <div class="member-name">阿强</div>
+                    <div class="member-role">街头口语达人</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar" style="background: linear-gradient(135deg, #A78BFA, #8B5CF6);">👔</div>
+                    <div class="member-name">王总</div>
+                    <div class="member-role">商务场景专家</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar" style="background: linear-gradient(135deg, #F9A8D4, #EC4899);">🐼</div>
+                    <div class="member-name">滚滚</div>
+                    <div class="member-role">儿童学习伙伴</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系区域 -->
+        <section class="contact-section">
+            <h2 class="section-title">联系我们</h2>
+            <p class="about-text">
+                有任何建议或问题？我们随时欢迎您的反馈！
+            </p>
+            <div class="contact-buttons">
+                <a href="mailto:hello@mandarinmate.com" class="contact-btn primary">
+                    <i class="fas fa-envelope"></i>
+                    发送邮件
+                </a>
+                <a href="#" class="contact-btn secondary">
+                    <i class="fab fa-weixin"></i>
+                    微信公众号
+                </a>
+                <a href="#" class="contact-btn secondary">
+                    <i class="fab fa-weibo"></i>
+                    新浪微博
+                </a>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2024 Mandarin Mate. 让中文学习更简单、更有趣。</p>
+        </footer>
+    </div>
+</body>
+</html>
